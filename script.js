@@ -150,3 +150,35 @@ Assertion messages may be unclear about what they display in some languages. If 
     }
     //test by printing this in the console
     console.log(duplicateEncode('BaRaban'));
+    /*
+Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+Rules for a smiling face:
+Each smiley face must contain a valid pair of eyes. Eyes can be marked as : or ;
+A smiley face can have a nose but it does not have to. Valid characters for a nose are - or ~
+Every smiling face must have a smiling mouth that should be marked with either ) or D
+No additional characters are allowed except for those mentioned.
+    */
+   //return the total number of smiling faces in the array
+function countSmileys(arr) {
+  let count = 0;
+  let validFace = [
+    ":)",
+    ";)",
+    ":-)",
+    ";-)",
+    ":~)",
+    ";~)",
+    ":D",
+    ";D",
+    ":-D",
+    ";-D",
+    ":~D",
+    ";~D"
+  ];
+  arr.map(item => {
+    validFace.map(vitem => {
+      if (item.includes(vitem)) count++;
+    });
+  });
+  return arr.length == 0 ? 0 : count;
+}
