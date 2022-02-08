@@ -210,3 +210,37 @@ function longestConsec(strarr, k) {
     return longest;
 }
 }
+/*
+Write a function named first_non_repeating_letter that takes a string input, and returns the first character that is not repeated anywhere in the string.
+For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
+As an added challenge, upper- and lowercase letters are considered the same character, but the function should return the correct case for the initial letter. For example, the input 'sTreSS' should return 'T'.
+If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests.
+*/
+function firstNonRepeatingLetter(s){
+  var allCharacters = s.split('');
+  var character;
+  var characterMap = {};
+  //get all character counts
+  for(var i=0;i<allCharacters.length;i++){
+    character = allCharacters[i];
+    if(typeof(characterMap[character]) == 'undefined'){
+      characterMap[character] = 0;
+    }
+    characterMap[character]++;
+  }
+  //remove any duplicates
+  for(var c in characterMap){
+    if(characterMap[c] > 1){
+      delete characterMap[c];
+    }
+  }
+  //find the first character in your string that is *still* in the map
+  for(var i=0;i<allCharacters.length;i++){
+    character = allCharacters[i];
+    if(typeof(characterMap[character]) != 'undefined'){
+      return character;
+    }
+  }
+  //all characters in the string were duplicated (e.g. "ABBA")
+  return 'No non repeating letters';
+}
